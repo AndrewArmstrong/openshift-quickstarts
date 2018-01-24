@@ -37,7 +37,7 @@ public class ChatAnnotation {
 
     private static final Logger log = Logger.getLogger(ChatAnnotation.class);
 
-    private static final String GUEST_PREFIX = "Hello Guest:";
+    private static final String GUEST_PREFIX = "Honoroed Guest:";
     private static final AtomicInteger connectionIds = new AtomicInteger(0);
     private static final Set<ChatAnnotation> connections =
             new CopyOnWriteArraySet<ChatAnnotation>();
@@ -54,7 +54,7 @@ public class ChatAnnotation {
     public void start(Session session) {
         this.session = session;
         connections.add(this);
-        String message = String.format("* %s %s", nickname, "has joined.");
+        String message = String.format("* %s %s", nickname, " is here to spread his wisdom.");
         broadcast(message);
     }
 
@@ -63,7 +63,7 @@ public class ChatAnnotation {
     public void end() {
         connections.remove(this);
         String message = String.format("* %s %s",
-                nickname, "has disconnected.");
+                nickname, "has left the building.");
         broadcast(message);
     }
 
